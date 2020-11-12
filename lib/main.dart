@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -197,14 +198,14 @@ class Tela_inicial extends StatefulWidget {
 class _Tela_inicialState extends State<Tela_inicial> {
   @override
   Widget build(BuildContext context) {
-    final title = 'Estoque - Menu';
     return MaterialApp(
-      title: title,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          centerTitle: true,
+          title: Text('Estoque - Menu'),
         ),
-        body: ListView(
+        body:
+        ListView(
           children: <Widget>[
             ListTile(
               leading: Icon(Icons.add_shopping_cart),
