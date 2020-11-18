@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'DatabaseHelper.dart';
 import 'Lista.dart';
 import 'Produto.dart';
@@ -25,21 +24,19 @@ class _CadState extends State<Cad> {
       int resultado = await banco.inserirProduto(produto);
       if(resultado != null ){
         print("Cadastrado com sucesso "+resultado.toString());
+        txtProduto.clear();
+        txtQuantidade.clear();
+        txtPreco.clear();
+        txtMinimo.clear();
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Lista()),
+        );
       }
       else{
         print("erro "+resultado.toString());
       }
-
-      txtProduto.clear();
-      txtQuantidade.clear();
-      txtPreco.clear();
-      txtMinimo.clear();
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Lista()),
-      );
-
     });
   }
 
@@ -53,7 +50,7 @@ class _CadState extends State<Cad> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Estoque - Menu'),
+        title: Text('Estoque - Cadastro'),
         centerTitle: true,
         backgroundColor: Colors.indigo,
       ),

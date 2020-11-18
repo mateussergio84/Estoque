@@ -25,6 +25,7 @@ class _HomeState extends State<Home> {
               leading: Icon(Icons.add_shopping_cart),
               title: Text('Cadastro de Produtos'),
               onTap:(){
+                //Navigator.pushNamed(context, '/cad');
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Cad()),
