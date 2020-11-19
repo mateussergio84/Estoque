@@ -54,7 +54,8 @@ class DatabaseHelper {
   }
   Future<int> atualizarProduto(Produto produto,int id) async {
     var db = await this.database;
-    var result = await db.rawUpdate("UPDATE $tabelaProduto SET $colNome = '${produto.nome}', $colQuantidade = '${produto.quantidade}', $colValor = '${produto.valor}' WHERE $colId = '$id'");
+    var result = await db.rawUpdate("UPDATE $tabelaProduto SET $colNome ='${produto.nome}', $colQuantidade = '${produto.quantidade}', $colValor = '${produto.valor}', $colMinimo = '${produto.minimo}' WHERE $colId = '$id'");
+    //var result = await db.rawUpdate("UPDATE $tabelaProduto SET $colNome = '${produto.nome}', $colQuantidade = '${produto.quantidade}', $colValor = '${produto.valor}', $colMinimo ='${produto.minimo}' WHERE $colId = '%id'");
     return result;
   }
   Future<int> apagarProduto(int id) async {
@@ -87,6 +88,11 @@ class DatabaseHelper {
     List listaProduto = await db.rawQuery(sql);
     return listaProduto;
   }
+
+
+
+
+
 
 }
 

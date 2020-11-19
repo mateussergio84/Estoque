@@ -43,8 +43,8 @@ class _HomeState extends State<Home> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.bar_chart_sharp),
-              title: Text('Controle de gastos'),
+              leading: Icon(Icons.assignment_turned_in_outlined),
+              title: Text('Produtos em falta'),
             ),
           ],
         ),

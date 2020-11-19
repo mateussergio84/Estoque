@@ -23,9 +23,9 @@ class Produto{
   Produto.fromMapObject(Map<String, dynamic> map) {
     this.id = map ['id'];
     this.nome = map['nome'];
-    this.quantidade = map['quantidade'];
-    this.valor = map['valor'];
-    this.minimo = map['minimo'];
+    this.quantidade = map[quantidade];
+    this.valor = map[valor];
+    this.minimo = map[minimo];
   }
 
 }
