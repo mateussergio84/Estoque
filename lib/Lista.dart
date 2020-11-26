@@ -42,6 +42,7 @@ class _ListaState extends State<Lista> {
   }
 
   void _atualizarProduto(Produto produto) {
+    final _formKey = GlobalKey<FormState>();
     TextEditingController txtProd = TextEditingController();
     TextEditingController txtQuant = TextEditingController();
     TextEditingController txtPrec = TextEditingController();
@@ -55,44 +56,61 @@ class _ListaState extends State<Lista> {
           ),
           content: Container(
             child: Form(
+              key: _formKey,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: TextField(
+                    child: TextFormField(
                       controller: txtProd,
                       decoration: InputDecoration(labelText: 'Produto',
                           border: OutlineInputBorder()),
+                      validator: (value){
+                        if(value.isEmpty) return "Campo obrigatorio";
+                        return null;
+                      },
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: TextField(
+                    child: TextFormField(
                       controller: txtQuant,
                       decoration: InputDecoration(labelText: 'Quantidade',
                           border: OutlineInputBorder()
                       ),
                       keyboardType: TextInputType.number,
+                      validator: (value){
+                        if(value.isEmpty) return "Campo obrigatorio";
+                        return null;
+                      },
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: TextField(
+                    child: TextFormField(
                       controller: txtPrec,
                       decoration: InputDecoration(labelText: 'Preço',
                           border: OutlineInputBorder()
                       ),
                       keyboardType: TextInputType.number,
+                      validator: (value){
+                        if(value.isEmpty) return "Campo obrigatorio";
+                        return null;
+                      },
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: TextField(
+                    child: TextFormField(
                       controller: txtMini,
                       decoration: InputDecoration(labelText: 'Quantidade Minima',
                           border: OutlineInputBorder()),
                       keyboardType: TextInputType.number,
+                      validator: (value){
+                        if(value.isEmpty) return "Campo obrigatorio";
+                        return null;
+                      },
                     ),
                   ),
 
@@ -107,7 +125,7 @@ class _ListaState extends State<Lista> {
               ),
               onPressed: () {
                 Produto _produto;
-                if (txtQuant != null && txtMini != null && txtPrec != null) {
+                if (_formKey.currentState.validate()) {
                   _produto = Produto(txtProd.text, num.tryParse(txtQuant.text), num.tryParse(txtPrec.text), num.tryParse(txtMini.text));
                   banco.atualizarProduto(_produto, produto.id);
                   recebeProdutos();

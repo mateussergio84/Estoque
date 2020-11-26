@@ -9,6 +9,7 @@ class Cad extends StatefulWidget {
 }
 
 class _CadState extends State<Cad> {
+  final _formKey = GlobalKey<FormState>();
   static DatabaseHelper banco;
   @override
   void initState() {
@@ -48,14 +49,15 @@ class _CadState extends State<Cad> {
 
   @override
   Widget build(BuildContext context) {
-    //GlobalKey<FormState> _key = new GlobalKey();
     return Scaffold(
       appBar: AppBar(
         title: Text('Estoque - Cadastro'),
         centerTitle: true,
         backgroundColor: Colors.indigo,
       ),
-      body: Column(
+      body: Form(
+        key: _formKey,
+        child:Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -65,35 +67,51 @@ class _CadState extends State<Cad> {
                 controller: txtProduto,
                 decoration: InputDecoration(labelText: 'Produto',
                     border: OutlineInputBorder()),
+                validator: (value){
+                  if(value.isEmpty) return "Campo obrigatorio";
+                  return null;
+                },
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: TextField(
+              child: TextFormField(
                 controller: txtQuantidade,
                 decoration: InputDecoration(labelText: 'Quantidade',
                     border: OutlineInputBorder()
                 ),
                 keyboardType: TextInputType.number,
+                validator: (value){
+                  if(value.isEmpty) return "Campo obrigatorio";
+                  return null;
+                },
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: TextField(
+              child: TextFormField(
                 controller: txtPreco,
                 decoration: InputDecoration(labelText: 'Preço',
                     border: OutlineInputBorder()
                 ),
                 keyboardType: TextInputType.number,
+                validator: (value){
+                  if(value.isEmpty) return "Campo obrigatorio";
+                  return null;
+                },
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: TextField(
+              child: TextFormField(
                 controller: txtMinimo,
                 decoration: InputDecoration(labelText: 'Quantidade Minima',
                     border: OutlineInputBorder()),
                 keyboardType: TextInputType.number,
+                validator: (value){
+                  if(value.isEmpty) return "Campo obrigatorio";
+                  return null;
+                },
               ),
             ),
             FlatButton(
@@ -107,13 +125,13 @@ class _CadState extends State<Cad> {
                 ),
               ),
               onPressed: (){
-                salvarProduto();
-
-                // if(_key.currentState.validate()){
-                //}
+                if(_formKey.currentState.validate()){
+                  salvarProduto();
+                }
               },
             ),
           ]
+      ),
       ),
     );
   }
