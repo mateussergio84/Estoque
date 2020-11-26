@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 import 'DatabaseHelper.dart';
 import 'Produto.dart';
 
@@ -106,7 +107,7 @@ class _ListaState extends State<Lista> {
               ),
               onPressed: () {
                 Produto _produto;
-                if (txtQuant != null || txtMini != null || txtPrec != null) {
+                if (txtQuant != null && txtMini != null && txtPrec != null) {
                   _produto = Produto(txtProd.text, num.tryParse(txtQuant.text), num.tryParse(txtPrec.text), num.tryParse(txtMini.text));
                   banco.atualizarProduto(_produto, produto.id);
                   recebeProdutos();
@@ -125,6 +126,7 @@ class _ListaState extends State<Lista> {
 
   @override
   Widget build(BuildContext context) {
+    banco.totalProdutos();
     return Scaffold(
       appBar: AppBar(
         title: Text('Estoque - Lista'),
@@ -165,7 +167,7 @@ class _ListaState extends State<Lista> {
                         ),
                       ),
                     );
-                  }))
+                  })),
         ],
 
       ),

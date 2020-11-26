@@ -65,7 +65,7 @@ class DatabaseHelper {
   }
 
 
-  Future<List<Map<String, dynamic>>> getProdutoMapList() async {
+  /*Future<List<Map<String, dynamic>>> getProdutoMapList() async {
     Database db = await this.database;
     var result = await db.rawQuery("SELECT * FROM $tabelaProduto");
     return result;
@@ -81,6 +81,7 @@ class DatabaseHelper {
     }
     return listaDeProdutos;
   }
+*/
 
   listarProdutos() async{
     Database db = await this.database;
@@ -89,10 +90,18 @@ class DatabaseHelper {
     return listaProduto;
   }
 
+  totalProdutos() async{
+    Database db = await this.database;
+    String sql = "SELECT SUM($colQuantidade*$colValor) from $tabelaProduto";
+    List Total = await db.rawQuery(sql);
+    return Total;
+  }
 
-
-
-
-
+  Produtosfalta() async{
+    Database db = await this.database;
+    String sql = "SELECT * FROM $tabelaProduto where $colQuantidade < $colMinimo";
+    List listaProdutofalta = await db.rawQuery(sql);
+    return listaProdutofalta;
+  }
 }
 

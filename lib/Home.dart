@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_2/Falta.dart';
 import 'Cad.dart';
 import 'Lista.dart';
 
@@ -45,6 +46,12 @@ class _HomeState extends State<Home> {
             ListTile(
               leading: Icon(Icons.assignment_turned_in_outlined),
               title: Text('Produtos em falta'),
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Falta()),
+                );
+              },
             ),
           ],
         ),

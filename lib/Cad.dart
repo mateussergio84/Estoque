@@ -48,6 +48,7 @@ class _CadState extends State<Cad> {
 
   @override
   Widget build(BuildContext context) {
+    //GlobalKey<FormState> _key = new GlobalKey();
     return Scaffold(
       appBar: AppBar(
         title: Text('Estoque - Cadastro'),
@@ -60,7 +61,7 @@ class _CadState extends State<Cad> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: TextField(
+              child: TextFormField(
                 controller: txtProduto,
                 decoration: InputDecoration(labelText: 'Produto',
                     border: OutlineInputBorder()),
@@ -107,6 +108,9 @@ class _CadState extends State<Cad> {
               ),
               onPressed: (){
                 salvarProduto();
+
+                // if(_key.currentState.validate()){
+                //}
               },
             ),
           ]
