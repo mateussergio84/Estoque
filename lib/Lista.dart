@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 import 'DatabaseHelper.dart';
 import 'Produto.dart';
 
@@ -12,15 +11,20 @@ class _ListaState extends State<Lista> {
   static DatabaseHelper banco;
   List<Produto> listaprodutos = List<Produto>();
 
+
   void recebeProdutos() async{
     banco = new DatabaseHelper();
     List produtosRecebidos = await banco.listarProdutos();
+    List tot = await banco.totalProdutos();
     print("Produtos cadastrado: "+produtosRecebidos.toString());
+    print('Total : '+tot.toString());
     List<Produto> listatemporaria = List<Produto>();
     for(var item in produtosRecebidos){
       Produto p = Produto.fromMapObject(item);
       listatemporaria.add(p);
     }
+
+
 
     setState(() {
       listaprodutos = listatemporaria;
@@ -43,10 +47,10 @@ class _ListaState extends State<Lista> {
 
   void _atualizarProduto(Produto produto) {
     final _formKey = GlobalKey<FormState>();
-    TextEditingController txtProd = TextEditingController();
-    TextEditingController txtQuant = TextEditingController();
-    TextEditingController txtPrec = TextEditingController();
-    TextEditingController txtMini = TextEditingController();
+    TextEditingController txtProd = TextEditingController(text: produto.nome);
+    TextEditingController txtQuant = TextEditingController(text: produto.quantidade.toString());
+    TextEditingController txtPrec = TextEditingController(text: produto.valor.toString());
+    TextEditingController txtMini = TextEditingController(text: produto.minimo.toString());
 
     showDialog(
       context: context,
@@ -144,7 +148,7 @@ class _ListaState extends State<Lista> {
 
   @override
   Widget build(BuildContext context) {
-    banco.totalProdutos();
+   banco.totalProdutos();
     return Scaffold(
       appBar: AppBar(
         title: Text('Estoque - Lista'),
@@ -187,7 +191,6 @@ class _ListaState extends State<Lista> {
                     );
                   })),
         ],
-
       ),
     );
   }

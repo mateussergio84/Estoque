@@ -21,7 +21,6 @@ class _CadState extends State<Cad> {
     setState(()async {
       Produto produto;
       produto = new Produto(txtProduto.text, num.tryParse(txtQuantidade.text),num.tryParse(txtMinimo.text), num.tryParse(txtPreco.text));
-      //banco.inserirProduto(produto);
       int resultado = await banco.inserirProduto(produto);
       if(resultado != null ){
         print("Cadastrado com sucesso "+resultado.toString());
@@ -59,7 +58,6 @@ class _CadState extends State<Cad> {
         key: _formKey,
         child:Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(20.0),

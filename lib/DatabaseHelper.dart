@@ -99,7 +99,7 @@ class DatabaseHelper {
 
   Produtosfalta() async{
     Database db = await this.database;
-    String sql = "SELECT * FROM $tabelaProduto where $colQuantidade < $colMinimo";
+    String sql = "SELECT * FROM $tabelaProduto where $colQuantidade > $colMinimo";
     List listaProdutofalta = await db.rawQuery(sql);
     return listaProdutofalta;
   }

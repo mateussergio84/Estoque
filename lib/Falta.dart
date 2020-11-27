@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 import 'DatabaseHelper.dart';
 import 'Produto.dart';
 
@@ -38,7 +37,7 @@ class _FaltaState extends State<Falta> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Estoque - Produto em Falta'),
+        title: Text('Estoque - Produtos em Falta'),
         centerTitle: true,
         backgroundColor: Colors.indigo,
       ),
@@ -53,7 +52,7 @@ class _FaltaState extends State<Falta> {
                     return Card(
                       child: ListTile(
                         title: Center(child: Text(obj.nome),),
-                        subtitle: Center(child: Text('Quantidade em estoque: '+obj.quantidade.toString()+"  Minimo desejado: "+obj.valor.toString()) ),
+                        subtitle: Center(child: Text('Quantidade em estoque: '+obj.quantidade.toString()+"  Minimo desejavel: "+obj.valor.toString())),
                       ),
                     );
                   })),
