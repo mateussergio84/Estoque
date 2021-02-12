@@ -10,12 +10,12 @@ class Lista extends StatefulWidget {
 class _ListaState extends State<Lista> {
   static DatabaseHelper banco;
   List<Produto> listaprodutos = List<Produto>();
-
+  List tot;
 
   void recebeProdutos() async{
     banco = new DatabaseHelper();
+    tot = await banco.totalProdutos();
     List produtosRecebidos = await banco.listarProdutos();
-    List tot = await banco.totalProdutos();
     print("Produtos cadastrado: "+produtosRecebidos.toString());
     print('Total : '+tot.toString());
     List<Produto> listatemporaria = List<Produto>();
@@ -148,7 +148,8 @@ class _ListaState extends State<Lista> {
 
   @override
   Widget build(BuildContext context) {
-   banco.totalProdutos();
+    double total = 0;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Estoque - Lista'),
@@ -163,6 +164,7 @@ class _ListaState extends State<Lista> {
                   itemCount: listaprodutos.length,
                   itemBuilder: (context, index){
                     final Produto obj = listaprodutos[index];
+                    total = (obj.quantidade * obj.valor);
                     return Card(
                       child: ListTile(
                         title: Text(obj.nome),
@@ -189,8 +191,10 @@ class _ListaState extends State<Lista> {
                         ),
                       ),
                     );
-                  })),
-        ],
+                  }),
+          ),
+          Text(tot.toString()),
+    ],
       ),
     );
   }

@@ -92,7 +92,7 @@ class DatabaseHelper {
 
   totalProdutos() async{
     Database db = await this.database;
-    String sql = "SELECT SUM($colQuantidade*$colValor) from $tabelaProduto";
+    String sql = "SELECT SUM ($colQuantidade*$colValor) as'Total' from $tabelaProduto";
     List Total = await db.rawQuery(sql);
     return Total;
   }
@@ -103,5 +103,17 @@ class DatabaseHelper {
     List listaProdutofalta = await db.rawQuery(sql);
     return listaProdutofalta;
   }
+
+
+
+  /*Future<int> _Teste() async {
+    //var db = await DatabaseHelper.instance.database;
+    Database db = await this.database;
+    String sql = "SELECT SUM($colQuantidade*$colValor) from $tabelaProduto";
+    int resul = sql.toString() as int;
+    //var result = await db.rawQuery('SELECT SUM(valor) FROM lancamentos');
+    return resul;
+    //return result[0]["SUM(valor)"];
+  }*/
 }
 

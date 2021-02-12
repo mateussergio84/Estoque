@@ -20,7 +20,7 @@ class _CadState extends State<Cad> {
   void salvarProduto(){
     setState(()async {
       Produto produto;
-      produto = new Produto(txtProduto.text, num.tryParse(txtQuantidade.text),num.tryParse(txtMinimo.text), num.tryParse(txtPreco.text));
+      produto = new Produto(txtProduto.text, num.tryParse(txtQuantidade.text), num.tryParse(txtPreco.text),num.tryParse(txtMinimo.text));
       int resultado = await banco.inserirProduto(produto);
       if(resultado != null ){
         print("Cadastrado com sucesso "+resultado.toString());

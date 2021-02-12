@@ -25,6 +25,6 @@ class Produto{
     this.nome = map['nome'];
     this.quantidade = int.parse(map['quantidade']);
     this.valor = double.parse(map['valor']);
-    this.minimo = double.parse(map['minimo']);
+    this.minimo = int.parse(map['minimo']);
   }
 }
